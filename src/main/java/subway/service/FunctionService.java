@@ -3,7 +3,6 @@ package subway.service;
 import subway.exception.FunctionSelectionValidator;
 import subway.exception.PathStandardValidator;
 import subway.exception.StationNameValidator;
-import subway.exception.StationRelationValidator;
 import subway.view.InputView;
 
 import java.util.Scanner;
@@ -49,17 +48,16 @@ public class FunctionService {
         }
     }
 
-    public static String takeEndStation(Scanner scanner, String startStation) {
+    public static String takeEndStation(Scanner scanner) {
         InputView inputView = new InputView();
         String endStation = inputView.readEndStation(scanner);
 
         try {
             StationNameValidator.validateEmptyInput(endStation);
-            StationRelationValidator.validate(startStation, endStation);
             return endStation;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage() + "\n");
-            return takeEndStation(scanner, startStation);
+            return takeEndStation(scanner);
         }
     }
 }

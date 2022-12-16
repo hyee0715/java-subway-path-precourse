@@ -4,6 +4,7 @@ import static subway.constant.Constant.*;
 import static subway.domain.DistanceCalculator.*;
 import static subway.service.FunctionService.*;
 
+import subway.exception.StationRelationValidator;
 import subway.service.Initializer;
 import subway.view.InputView;
 import subway.view.OutputView;
@@ -65,9 +66,31 @@ public class SubwayController {
 
     public void getResultDistanceWeight(Scanner scanner) {
         String startStation = takeStartStation(scanner);
-        String endStation = takeEndStation(scanner, startStation);
+        String endStation = takeEndStation(scanner);
+        try {
+            StationRelationValidator.validate(startStation, endStation);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage() + "\n");
+            return;
+        }
 
-        List<String> shortestDistance = calculateDistanceWeightGraph(startStation, endStation);
+        calculateShortestDistance(startStation, endStation);
+    }
+
+    public void getResultTimeWeight(Scanner scanner) {
+        String startStation = takeStartStation(scanner);
+        String endStation = takeEndStation(scanner);
+        try {
+            StationRelationValidator.validate(startStation, endStation);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage() + "\n");
+            return;
+        }
+        calculateShortestTime(startStation, endStation);
+    }
+
+    public void calculateShortestTime(String startStation, String endStation) {
+        List<String> shortestDistance = calculateTimeWeightGraph(startStation, endStation);
 
         int totalDistance = calculateTotalDistance(shortestDistance);
         int totalTime = calculateTotalTime(shortestDistance);
@@ -75,11 +98,8 @@ public class SubwayController {
         outputView.printResult(shortestDistance, totalDistance, totalTime);
     }
 
-    public void getResultTimeWeight(Scanner scanner) {
-        String startStation = takeStartStation(scanner);
-        String endStation = takeEndStation(scanner, startStation);
-
-        List<String> shortestDistance = calculateTimeWeightGraph(startStation, endStation);
+    public void calculateShortestDistance(String startStation, String endStation) {
+        List<String> shortestDistance = calculateDistanceWeightGraph(startStation, endStation);
 
         int totalDistance = calculateTotalDistance(shortestDistance);
         int totalTime = calculateTotalTime(shortestDistance);
