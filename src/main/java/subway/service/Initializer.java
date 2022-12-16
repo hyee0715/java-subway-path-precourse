@@ -1,22 +1,19 @@
 package subway.service;
 
-import subway.domain.Line;
-import subway.domain.Path;
-import subway.domain.PathRepository;
-import subway.domain.Station;
+import subway.domain.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.StringTokenizer;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import static subway.constant.Constant.*;
 
 public class Initializer {
-    private final String[] line2Stations = new String[]{"교대역", "강남역", "역삼역"};
-    private final String[] line3Stations = new String[]{"교대역", "남부터미널역", "양재역", "매봉역"};
-    private final String[] bundanglineStations = new String[]{"강남역", "양재역", "양재시민의숲역"};
+    private static final String[] line2Stations = new String[]{"교대역", "강남역", "역삼역"};
+    private static final String[] line3Stations = new String[]{"교대역", "남부터미널역", "양재역", "매봉역"};
+    private static final String[] bundanglineStations = new String[]{"강남역", "양재역", "양재시민의숲역"};
 
     private final String[] line2Path = new String[]{"교대역 : 2 : 3 : 강남역", "강남역 : 2 : 3 : 역삼역"};
     private final String[] line3Path = new String[]{"교대역 : 3 : 2 : 남부터미널역", "남부터미널역 : 6 : 5 : 양재역", "양재역 : 1 : 1 : 매봉역"};
@@ -26,6 +23,33 @@ public class Initializer {
         return Arrays.stream(lineStations)
                 .map(Station::new)
                 .collect(Collectors.toList());
+    }
+
+    public static void initializeStationRepository() {
+        Arrays.stream(line2Stations)
+                .map(Station::new)
+                .forEach(StationRepository::addStation);
+        Arrays.stream(line3Stations)
+                .map(Station::new)
+                .forEach(StationRepository::addStation);
+        Arrays.stream(bundanglineStations)
+                .map(Station::new)
+                .forEach(StationRepository::addStation);
+    }
+
+    public static void initializeTotalPathRepository() {
+        TotalPath totalPath = new TotalPath("2호선", Arrays.stream(line2Stations)
+                .collect(Collectors.toSet()));
+        TotalPathRepository.add(totalPath);
+
+        totalPath = new TotalPath("3호선", Arrays.stream(line3Stations)
+                .collect(Collectors.toSet()));
+        TotalPathRepository.add(totalPath);
+
+        totalPath = new TotalPath("분당선", Arrays.stream(bundanglineStations)
+                .collect(Collectors.toSet()));
+        TotalPathRepository.add(totalPath);
+
     }
 
     public List<Line> initializeLines() {

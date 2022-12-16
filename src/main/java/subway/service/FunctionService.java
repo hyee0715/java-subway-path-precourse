@@ -8,7 +8,7 @@ import subway.view.InputView;
 
 import java.util.Scanner;
 
-public class InputService {
+public class FunctionService {
 
     public static String takeFunctionSelection(Scanner scanner) {
         InputView inputView = new InputView();
