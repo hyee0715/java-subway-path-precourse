@@ -8,4 +8,6 @@ public class Constant {
     public static final String LINE3 = "3호선";
     public static final String BUNDANGLINE = "분당선";
 
+    public static final String QUIT = "Q";
+
 }

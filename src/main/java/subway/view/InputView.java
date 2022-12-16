@@ -7,6 +7,6 @@ public class InputView {
 
     public String readFunctionSelection(Scanner scanner) {
         System.out.println(SELECT_FUNCTION_MESSAGE);
-        return scanner.next();
+        return scanner.nextLine();
     }
 }
