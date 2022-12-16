@@ -71,6 +71,8 @@ public class SubwayController {
 
         int totalDistance = calculateTotalDistance(shortestDistance);
         int totalTime = calculateTotalTime(shortestDistance);
+
+        outputView.printResult(shortestDistance, totalDistance, totalTime);
     }
 
     public void getResultTimeWeight(Scanner scanner) {
@@ -81,5 +83,7 @@ public class SubwayController {
 
         int totalDistance = calculateTotalDistance(shortestDistance);
         int totalTime = calculateTotalTime(shortestDistance);
+
+        outputView.printResult(shortestDistance, totalDistance, totalTime);
     }
 }
