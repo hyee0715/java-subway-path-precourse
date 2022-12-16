@@ -2,6 +2,7 @@ package subway.controller;
 
 import static subway.constant.Constant.*;
 import static subway.service.PathService.takeFunctionSelection;
+import static subway.service.PathService.takePathStandard;
 
 import subway.service.Initializer;
 import subway.view.InputView;
@@ -44,7 +45,8 @@ public class SubwayController {
         if (functionSelection.equals(SEARCH_PATH)) {
             outputView.printPathStandard();
 
-            String pathStandard = inputView.readFunctionSelection(scanner);
+            String pathStandard = takePathStandard(scanner);
+            System.out.println(pathStandard);
         }
     }
 }
