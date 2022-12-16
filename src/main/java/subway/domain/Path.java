@@ -15,4 +15,20 @@ public class Path {
         this.distance = distance;
         this.time = time;
     }
+
+    public Station getUpStation() {
+        return upStation;
+    }
+
+    public Station getDownStation() {
+        return downStation;
+    }
+
+    public int getDistance() {
+        return distance;
+    }
+
+    public int getTime() {
+        return time;
+    }
 }

@@ -3,6 +3,7 @@ package subway.controller;
 import static subway.constant.Constant.*;
 import static subway.service.InputService.*;
 
+import subway.exception.StationRelationValidator;
 import subway.service.Initializer;
 import subway.view.InputView;
 import subway.view.OutputView;
@@ -53,7 +54,8 @@ public class SubwayController {
     public void proceedPathStandard(String pathStandard, Scanner scanner) {
         if (pathStandard.equals(SHORTEST_DISTANCE)) {
             String startStation = takeStartStation(scanner);
-            String endStation = takeEndStation(scanner);
+            String endStation = takeEndStation(scanner, startStation);
+
         }
     }
 }
