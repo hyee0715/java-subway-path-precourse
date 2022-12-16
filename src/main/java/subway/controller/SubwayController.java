@@ -1,16 +1,26 @@
 package subway.controller;
 
-import subway.domain.Line;
-import subway.domain.Station;
 import subway.service.Initializer;
+import subway.view.OutputView;
 
-import java.util.List;
 
 public class SubwayController {
-    Initializer initializer = new Initializer();
+    Initializer initializer;
+    OutputView outputView;
+
+    public SubwayController() {
+        initializer = new Initializer();
+        outputView = new OutputView();
+    }
 
     public void run() {
-        List<Line> lines = initializer.initializeLines();
+        initialize();
+
+        outputView.printMainQuestion();
+    }
+
+    public void initialize() {
+        initializer.initializeLines();
         initializer.initializePath();
     }
 }
