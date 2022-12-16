@@ -5,7 +5,7 @@ import subway.view.InputView;
 
 import java.util.Scanner;
 
-public class FunctionSelectionService {
+public class PathService {
 
     public static String takeFunctionSelection(Scanner scanner) {
         InputView inputView = new InputView();

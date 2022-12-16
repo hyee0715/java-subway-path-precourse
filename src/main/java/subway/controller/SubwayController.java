@@ -1,7 +1,7 @@
 package subway.controller;
 
 import static subway.constant.Constant.*;
-import static subway.service.FunctionSelectionService.takeFunctionSelection;
+import static subway.service.PathService.takeFunctionSelection;
 
 import subway.service.Initializer;
 import subway.view.InputView;
@@ -16,7 +16,7 @@ public class SubwayController {
     String functionSelection;
 
     public SubwayController() {
-        String functionSelection = "";
+        functionSelection = "";
         initializer = new Initializer();
         inputView = new InputView();
         outputView = new OutputView();
@@ -29,7 +29,7 @@ public class SubwayController {
             outputView.printMainQuestion();
 
             functionSelection = takeFunctionSelection(scanner);
-            findPath(functionSelection);
+            findPath(functionSelection, scanner);
 
         } while (!functionSelection.equals(QUIT));
     }
@@ -39,10 +39,12 @@ public class SubwayController {
         initializer.initializePath();
     }
 
-    public void findPath(String functionSelection) {
+    public void findPath(String functionSelection, Scanner scanner) {
         System.out.print(LINE_BREAK);
         if (functionSelection.equals(SEARCH_PATH)) {
             outputView.printPathStandard();
+
+            String pathStandard = inputView.readFunctionSelection(scanner);
         }
     }
 }
