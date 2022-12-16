@@ -10,7 +10,7 @@ public class OutputView {
             "1. 최단 거리\n" +
             "2. 최소 시간\n" +
             "B. 돌아가기\n";
-    private static String RESULT_MESSAGE = "## 조회 결과";
+    private static String RESULT_MESSAGE = "\n## 조회 결과";
     private static String INFO_LINE_MESSAGE = "[INFO] ---";
     private static String INFO_MESSAGE = "[INFO] ";
 
