@@ -9,5 +9,7 @@ public class Constant {
     public static final String BUNDANGLINE = "분당선";
 
     public static final String QUIT = "Q";
+    public static final String SEARCH_PATH = "1";
+    public static final String LINE_BREAK = "\n";
 
 }
