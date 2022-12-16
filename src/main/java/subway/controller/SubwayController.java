@@ -1,8 +1,7 @@
 package subway.controller;
 
 import static subway.constant.Constant.*;
-import static subway.service.InputService.takeFunctionSelection;
-import static subway.service.InputService.takePathStandard;
+import static subway.service.InputService.*;
 
 import subway.service.Initializer;
 import subway.view.InputView;
@@ -53,8 +52,8 @@ public class SubwayController {
 
     public void proceedPathStandard(String pathStandard, Scanner scanner) {
         if (pathStandard.equals(SHORTEST_DISTANCE)) {
-            String startStation = inputView.readStartStation(scanner);
-            String endStation = inputView.readEndStation(scanner);
+            String startStation = takeStartStation(scanner);
+            String endStation = takeEndStation(scanner);
         }
     }
 }
